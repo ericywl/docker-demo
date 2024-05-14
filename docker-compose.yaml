@@ -14,6 +14,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ADMIN_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ADMIN_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
 
   mongo-express:
     image: mongo-express
@@ -25,3 +27,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongodb
     depends_on:
       - mongodb
+
+volumes:
+  mongo-data:
+    driver: local
